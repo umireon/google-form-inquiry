@@ -1,7 +1,7 @@
 import { fromJS, Map } from 'immutable'
 
 let server = {
-  settings: fromJS({
+  settings: {
     notifyEnabled: true,
     notifyTemplateFile: '',
     notifyToEmail: '',
@@ -18,7 +18,7 @@ let server = {
     items: [
       { id: 1, label: 'Email' }
     ],
-  }),
+  },
 }
 
 function saveServer() {
@@ -58,7 +58,7 @@ class GoogleScriptRun {
   }
 
   saveConfig(settings) {
-    server.settings = settings.toJS()
+    server.settings = settings
     saveServer()
     this.onSuccess()
     return this

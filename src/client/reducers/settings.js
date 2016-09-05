@@ -18,6 +18,7 @@ export default handleActions({
   replyTemplateFile: '',
   replyToEmailFieldId: '',
   replyToNameFieldId: '',
+  mailBackend: '',
   mailFromEmail: '',
   mailFromName: '',
   mailReplyToEmail: '',

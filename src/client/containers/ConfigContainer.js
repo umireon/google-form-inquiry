@@ -53,11 +53,13 @@ class ConfigContainer extends React.Component {
         />
         <MailConfig
           isEnabled={settings.notifyEnabled || settings.replyEnabled}
+          backend={settings.mailBackend}
           fromEmail={settings.mailFromEmail}
           fromName={settings.mailFromName}
           replyToEmail={settings.mailReplyToEmail}
           replyToName={settings.mailReplyToName}
           sgApiKey={settings.sgApiKey}
+          onChangeBackend={e => updateSettings({ mailBackend: e.target.value })}
           onChangeFromEmail={e => updateSettings({ mailFromEmail: e.target.value })}
           onChangeFromName={e => updateSettings({ mailFromName: e.target.value })}
           onChangeReplyToEmail={e => updateSettings({ mailReplyToEmail: e.target.value })}

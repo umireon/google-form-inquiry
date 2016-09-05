@@ -38,12 +38,6 @@ export default class NotifyConfig extends React.Component {
             value={this.props.toName}
             onChange={this.props.onChangeToName}
           />
-          <FormControl
-            componentClass='button'
-            onClick={this.props.onClickSubmitTest}
-          >
-            テスト送信
-          </FormControl>
         </Panel>
       </div>
     )

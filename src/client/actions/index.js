@@ -14,7 +14,7 @@ export function saveConfig(settings) {
       .withSuccessHandler(
         settings => dispatch(changeLoading({ isLoading: false }))
       )
-      .saveConfig(settings)
+      .saveConfig(settings.toJS())
   }
 }
 

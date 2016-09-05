@@ -2,23 +2,25 @@ const PROPERTY_KEY = '3'
 
 function loadProperties() {
   return {
-    document: JSON.parse(PropertiesService.getDocumentProperty(PROPERTY_KEY)),
-    user: JSON.parse(PropertiesService.getUserProperties(PROPERTY_KEY)),
-    script: JSON.parse(PropertiesService.getScriptProperties(PROPERTY_KEY)),
+    document: JSON.parse(PropertiesService.getDocumentProperties().getProperty(PROPERTY_KEY)),
+    user: JSON.parse(PropertiesService.getUserProperties().getProperty(PROPERTY_KEY)),
+    script: JSON.parse(PropertiesService.getScriptProperties().getProperty(PROPERTY_KEY)),
   }
 }
 
 function saveProperties(properties) {
-  PropertiesService.setDocumentProperty(PROPERTY_KEY, JSON.stringify(properties.document))
-  PropertiesService.setUserProperty(PROPERTY_KEY, JSON.stringify(properties.user))
-  PropertiesService.setScriptProperty(PROPERTY_KEY, JSON.stringify(properties.script))
+  PropertiesService.getDocumentProperties().setProperty(PROPERTY_KEY, JSON.stringify(properties.document))
+  PropertiesService.getUserProperties().setProperty(PROPERTY_KEY, JSON.stringify(properties.user))
+  PropertiesService.getScriptProperties().setProperty(PROPERTY_KEY, JSON.stringify(properties.script))
 }
 
 
 
 export function loadConfig() {
+  const config = loadProperties().document || {}
+
   const form = FormApp.getActiveForm()
-  const items = form.getItems().map(item => ({
+  config.items = form.getItems().map(item => ({
     helpText: item.getHelpText(),
     id: item.getId(),
     index: item.getIndex(),
@@ -26,11 +28,16 @@ export function loadConfig() {
     type: item.getType()
   }))
 
-  return {
-    items: items
-  }
+  return config
 }
 
 export function saveConfig(config) {
-
+  if (config['items']) {
+    delete config['items']
+  }
+  saveProperties({
+    document: config,
+    user: {},
+    script: {},
+  })
 }

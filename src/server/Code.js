@@ -18,8 +18,12 @@ function loadConfig() {
   return App.loadConfig();
 }
 
+function saveConfig(settings) {
+  return App.saveConfig(settings);
+}
+
 function sendNotify({}) {
-  
+
 }
 
 function onFormSubmit(e) {

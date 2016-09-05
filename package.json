@@ -8,7 +8,7 @@
     "build:html": "pug -P ./src/index.pug -o ./build",
     "build:bundle": "cross-env NODE_ENV=production webpack bundle=./src/client",
     "build:App": "cross-env NODE_ENV=production webpack App=./src/server/App.js",
-    "build:Code": "babel ./src/server/Code.js -o ./build/Code.js",
+    "build:Code": "cross-env NODE_ENV=production babel ./src/server/Code.js -o ./build/Code.js",
     "dist": "run-p dist:**",
     "dist:debug:server": "gulp dist:debug:server",
     "dist:debug:client": "cp build/App.js build/Code.js dist/debug/src",

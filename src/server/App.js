@@ -16,7 +16,7 @@ export function onShowConfig() {
   FormApp.getUi().showSidebar(ui);
 }
 
-export { loadConfig } from './ConfigService'
+export { loadConfig, saveConfig } from './ConfigService'
 
 export class MailgunProvider {
   send(options) {
